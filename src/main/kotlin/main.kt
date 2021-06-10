@@ -22,17 +22,17 @@ fun main(args: Array<String>) {
 
 
     // Only works for า, et al.
-    val resultMap = mutableMapOf<Int, String>();
-    var resultCounter = 1;
-    for (alpha in alphabetResult) {
-        for(vowel in vowelsResult) {
-            resultMap[resultCounter] = "$alpha$vowel"
-            resultCounter += 1;
-        }
-    }
-    for((key,value) in resultMap) {
-        println("$key: ${value}")
-    }
+//    val resultMap = mutableMapOf<Int, String>();
+//    var resultCounter = 1;
+//    for (alpha in alphabetResult) {
+//        for(vowel in vowelsResult) {
+//            resultMap[resultCounter] = "$alpha$vowel"
+//            resultCounter += 1;
+//        }
+//    }
+//    for((key,value) in resultMap) {
+//        println("$key: ${value}")
+//    }
 
 
 
