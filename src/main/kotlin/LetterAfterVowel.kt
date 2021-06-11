@@ -9,7 +9,7 @@ class LetterAfterVowel : Vowels{
         matchingSounds[mutableListOf("ai")] = mutableListOf("ไ")
     }
 
-    override fun parse(word: String, alphabet: Alphabets): Unit {
+    override fun parse(word: String, alphabet: Alphabets, dictionary: Set<String>): Unit {
         TODO("Not yet implemented")
     }
 }

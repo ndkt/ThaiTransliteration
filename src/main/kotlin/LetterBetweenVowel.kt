@@ -15,7 +15,7 @@ class LetterBetweenVowel : Vowels{
         matchingSounds[mutableListOf("ao","aw")] = mutableListOf("เ-า")
     }
     
-    override fun parse(word: String, alphabet: Alphabets): Unit {
+    override fun parse(word: String, alphabet: Alphabets, dictionary: Set<String>): Unit {
         TODO("Not yet implemented")
     }
 }

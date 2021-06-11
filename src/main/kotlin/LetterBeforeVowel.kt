@@ -15,7 +15,7 @@ class LetterBeforeVowel : Vowels{
         matchingSounds[mutableListOf("um","om")] = mutableListOf("ำ")
     }
 
-    override fun parse(word: String, alphabet: Alphabets): Unit {
+    override fun parse(word: String, alphabet: Alphabets, dictionary: Set<String>): Unit {
         var usedSystematicInference = false;
         println ("User Inputted: ${word.toLowerCase()}");
         val alphabetsHashmap = alphabet.alphabets
@@ -100,15 +100,19 @@ class LetterBeforeVowel : Vowels{
                 // (บอสตัน, bะston), (สนัอบต, bะston)
 
 
-
                     val setOfClosestWord = mutableSetOf<String>()
                     for (word in splitWordIndividuallySet) {
-                        val dictionary: MutableMap<String,MutableList<String>> = mutableMapOf(word to TEST_FILE.thaiWords_TEST)
+                        val dictionary: MutableMap<String,Set<String>> = mutableMapOf(word to Dictionary.parsedDictionary)
 //                        println(dictionary)
+//                        println(dictionary[word])
                         for (wordInDict in dictionary[word]!!) {
                             var letterMatchedCounter = 0;
+//                            println("WORDINDICT: ${wordInDict}")
                             wordInDict.forEachIndexed { index, letter ->
-                                if (word[index] == letter) {
+//                                println("INDEX: ${index}")
+                                if (index+1 > word.length) {
+//                                    println("NEEDS TO SKIP WORD")
+                                } else if (word[index] == letter) {
 //                                    println("Letter that were matched: ${letter}")
                                     setOfClosestWord.add(wordInDict)
                                     letterMatchedCounter +=1
@@ -118,7 +122,7 @@ class LetterBeforeVowel : Vowels{
                         }
                     }
 
-                println("Machine Thinks This Word is Closes: '${setOfClosestWord}' 96% similarity (TYPE 'c' TO USE IT)")
+                println("Machine Thinks This Word is Closes: '${setOfClosestWord}' 0.00% similarity (TYPE 'c' TO USE IT)")
                 println("Please Select The Closest Sounding Word: (Empty to Skip)")
                 var userRequestNumber = readLine()
 
