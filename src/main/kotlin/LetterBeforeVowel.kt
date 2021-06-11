@@ -85,7 +85,44 @@ class LetterBeforeVowel : Vowels{
 
 //            println("Letter Replaced @ ${individualSplittingIndex}")
             if (splitWordIndividuallySet.isNotEmpty()) {
-                println("Machine Thinks This Word is Closes: 'null' (PRESS ENTER TO USE IT)")
+
+
+
+
+
+
+//                splitWordIndividuallySet.zip(cycle(TEST_FILE.thaiWords_TEST)).forEach { pair ->
+//                    println("WORDINDIVIDUALLYSET: ${pair.component1()} and TEST_FILE: ${pair.component2()}")
+//                }
+
+
+                // bอston match with บอสตัน, สนัอบต
+                // bะston match with บอสตัน, สนัอบต
+                // bัston match with บอสตัน, สนัอบต
+
+                // (บอสตัน, bอston), (สนัอบต, bอston)
+                // (บอสตัน, bะston), (สนัอบต, bะston)
+
+
+
+                    val setOfClosestWord = mutableSetOf<String>()
+                    for (word in splitWordIndividuallySet) {
+                        val dictionary: MutableMap<String,MutableList<String>> = mutableMapOf(word to TEST_FILE.thaiWords_TEST)
+//                        println(dictionary)
+                        for (wordInDict in dictionary[word]!!) {
+                            var letterMatchedCounter = 0;
+                            wordInDict.forEachIndexed { index, letter ->
+                                if (word[index] == letter) {
+//                                    println("Letter that were matched: ${letter}")
+                                    setOfClosestWord.add(wordInDict)
+                                    letterMatchedCounter +=1
+                                }
+                            }
+//                            println("Letter Matched: ${letterMatchedCounter}")
+                        }
+                    }
+
+                println("Machine Thinks This Word is Closes: '${setOfClosestWord}' 96% similarity (PRESS ENTER TO USE IT)")
                 println("Please Select The Closest Sounding Word: (Empty to Skip)")
                 var userRequestNumber = readLine()
 

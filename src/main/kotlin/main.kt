@@ -1,7 +1,7 @@
 fun main(args: Array<String>) {
-    var keyFound = false;
-    var vowelsResult: MutableSet<String> = mutableSetOf();
-    var alphabetResult: MutableSet<String> = mutableSetOf();
+//    var keyFound = false;
+//    var vowelsResult: MutableSet<String> = mutableSetOf();
+//    var alphabetResult: MutableSet<String> = mutableSetOf();
 
 
     // https://www.activethai.com/study-thai/reading-and-writing/learning-the-thai-vowels/practice-the-thai-vowel-names/
