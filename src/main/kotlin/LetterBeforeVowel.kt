@@ -38,7 +38,7 @@ class LetterBeforeVowel : Vowels{
 //                        println("This Word Contains ${value}")
                         val newVowel = value.elementAt(0).toString();
 
-                        println("Search via Segmentation Looped")
+//                        println("Search via Segmentation Looped")
 
 //                        println("LetterFoundIndex: ${segmentationSplittingIndex}");
 //                        println("Letter Replaced @ ${segmentationSplittingIndex}")
@@ -105,40 +105,43 @@ class LetterBeforeVowel : Vowels{
                         val dictionary: MutableMap<String,Set<String>> = mutableMapOf(word to Dictionary.parsedDictionary)
 //                        println(dictionary)
 //                        println(dictionary[word])
-                        for (wordInDict in dictionary[word]!!) {
-                            var letterMatchedCounter = 0;
-//                            println("WORDINDICT: ${wordInDict}")
-                            wordInDict.forEachIndexed { index, letter ->
-//                                println("INDEX: ${index}")
-                                if (index+1 > word.length) {
-//                                    println("NEEDS TO SKIP WORD")
-                                } else if (word[index] == letter) {
+
+//                        for (wordInDict in dictionary[word]!!) {
+//                            var letterMatchedCounter = 0;
+////                            println("WORDINDICT: ${wordInDict}")
+//                            wordInDict.forEachIndexed { index, letter ->
+////                                println("INDEX: ${index}")
+//                                if (index+1 > word.length) {
+////                                    println("NEEDS TO SKIP WORD")
+//                                } else if ((word[index] == letter ) && (word[index] !in 'a'..'z')) {
 //                                    println("Letter that were matched: ${letter}")
-                                    setOfClosestWord.add(wordInDict)
-                                    letterMatchedCounter +=1
-                                }
-                            }
-//                            println("Letter Matched: ${letterMatchedCounter}")
-                        }
+//                                    setOfClosestWord.add(wordInDict)
+//                                    letterMatchedCounter +=1
+//                                }
+//                            }
+////                            println("Letter Matched: ${letterMatchedCounter}")
+//                        }
+
+
                     }
 
-                println("Machine Thinks This Word is Closes: '${setOfClosestWord}' 0.00% similarity (TYPE 'c' TO USE IT)")
-                println("Please Select The Closest Sounding Word: (Empty to Skip)")
-                var userRequestNumber = readLine()
-
-                if (userRequestNumber.toString() == 'c'.toString()) {
-                    usedSystematicInference = true;
-                    if (setOfClosestWord.isNotEmpty()) {
-                        splitWordSegmentationSet.clear()
-                        splitWordIndividuallySet.clear()
-                        splitWordIndividuallySet.add(setOfClosestWord.elementAt(0))
-                    }
-                    break
-                } else if (userRequestNumber!!.isNotEmpty() && (individualSplittingIndex+1 < word.toLowerCase().length)) {
-                    userRequestNumber = splitWordIndividuallySet.elementAt(userRequestNumber.toInt() - 1);
-                    splitWordString = userRequestNumber;
-                    splitWordIndividuallySet.clear()
-                }
+//                println("Machine Thinks This Word is Closes: '${setOfClosestWord}' 0.00% similarity (TYPE 'c' TO USE IT)")
+//                println("Please Select The Closest Sounding Word: (Empty to Skip)")
+//                var userRequestNumber = readLine()
+//
+//                if (userRequestNumber.toString() == 'c'.toString()) {
+//                    usedSystematicInference = true;
+//                    if (setOfClosestWord.isNotEmpty()) {
+//                        splitWordSegmentationSet.clear()
+//                        splitWordIndividuallySet.clear()
+//                        splitWordIndividuallySet.add(setOfClosestWord.elementAt(0))
+//                    }
+//                    break
+//                } else if (userRequestNumber!!.isNotEmpty() && (individualSplittingIndex+1 < word.toLowerCase().length)) {
+//                    userRequestNumber = splitWordIndividuallySet.elementAt(userRequestNumber.toInt() - 1);
+//                    splitWordString = userRequestNumber;
+//                    splitWordIndividuallySet.clear()
+//                }
 
 
             }
@@ -153,6 +156,8 @@ class LetterBeforeVowel : Vowels{
         }
 
         // Results of Vowel Replacement
+        println("SplitWordSegmentationSet: ${splitWordSegmentationSet}")
+        println("SplitWordIndividuallySet: ${splitWordIndividuallySet}")
         for (word in splitWordSegmentationSet) {
             vowelReplacementResultSet.add(word)
         }
@@ -183,26 +188,26 @@ class LetterBeforeVowel : Vowels{
                             parsedWordInserted = false
                         }
 
-                        if (parsedWordInserted) {
-                            var resultcounter = 1;
-                            println("Generated ${alphabetReplacementResultSet.size} Results in null seconds")
-                            for (result in alphabetReplacementResultSet) {
-                                println("${resultcounter}: ${result}")
-                                resultcounter += 1;
-                            }
-                            println("Machine Thinks This Word is Closes: 'null' (PRESS ENTER TO USE IT)")
-                            println("Please Select The Closest Sounding Word: (Empty to Skip)")
-                            val userRequestNumber = readLine()
-                            if (userRequestNumber!!.isNotEmpty()) {
-                                parsedWord = alphabetReplacementResultSet.elementAt(userRequestNumber!!.toInt()-1)
-                            }
-
-                            if (alphabetReplacementIndex == result.toLowerCase().lastIndex) {
-                                println("Your Word Is: ${parsedWord}")
-                            }
-
-                            alphabetReplacementResultSet.clear()
-                        }
+//                        if (parsedWordInserted) {
+//                            var resultcounter = 1;
+//                            println("Generated ${alphabetReplacementResultSet.size} Results in null seconds")
+//                            for (result in alphabetReplacementResultSet) {
+//                                println("${resultcounter}: ${result}")
+//                                resultcounter += 1;
+//                            }
+//                            println("Machine Thinks This Word is Closes: 'null' (PRESS ENTER TO USE IT)")
+//                            println("Please Select The Closest Sounding Word: (Empty to Skip)")
+//                            val userRequestNumber = readLine()
+//                            if (userRequestNumber!!.isNotEmpty()) {
+//                                parsedWord = alphabetReplacementResultSet.elementAt(userRequestNumber!!.toInt()-1)
+//                            }
+//
+//                            if (alphabetReplacementIndex == result.toLowerCase().lastIndex) {
+//                                println("Your Word Is: ${parsedWord}")
+//                            }
+//
+//                            alphabetReplacementResultSet.clear()
+//                        }
 
                     }
                 }
@@ -214,12 +219,31 @@ class LetterBeforeVowel : Vowels{
             println("Your Word Is: ${vowelReplacementResultSet.elementAt(0)}")
         }
 
-//        var resultcounter = 1;
-//        println("Generated ${alphabetReplacementResultSet.size} Results in 0.0000000001123 seconds")
-//        for (result in alphabetReplacementResultSet) {
-//            println("${resultcounter}: ${result}")
-//            resultcounter += 1;
-//        }
+        var resultcounter = 1;
+        val setOfClosestWord = mutableSetOf<String>()
+        println("Generated ${alphabetReplacementResultSet.size} Results in 0.0000000001123 seconds")
+        for (result in alphabetReplacementResultSet) {
+            println("${resultcounter}: ${result}")
+            resultcounter += 1;
+
+            val dictionary: MutableMap<String,Set<String>> = mutableMapOf(result to Dictionary.parsedDictionary)
+            for (wordInDict in dictionary[result]!!) {
+                var letterMatchedCounter = 0;
+//                            println("WORDINDICT: ${wordInDict}")
+                wordInDict.forEachIndexed { index, letter ->
+//                                println("INDEX: ${index}")
+                    if (index+1 > result.length) {
+//                                    println("NEEDS TO SKIP WORD")
+                    } else if ((result[index] == letter ) && (result[index] !in 'a'..'z')) {
+//                        println("Letter that were matched: ${letter}")
+                        setOfClosestWord.add(wordInDict)
+                        letterMatchedCounter +=1
+                    }
+                }
+//                println("Letter Matched: ${letterMatchedCounter}")
+            }
+            println("Machine Thinks This Word is Closes: '${setOfClosestWord}' 0.00% similarity (TYPE 'c' TO USE IT)")
+        }
 
 
     }
