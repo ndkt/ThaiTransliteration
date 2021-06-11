@@ -6,8 +6,8 @@ fun main(args: Array<String>) {
 
     print("Enter a word: ")
     val userInputWord = readLine();
-    val readDict = Dictionary()
-    val userInputParser = LetterBeforeVowel().parse(userInputWord!!.toLowerCase(), Alphabets(TH_LANG().alphabet),readDict.readDictionary());
+//    val readDict = Dictionary()
+    val userInputParser = LetterBeforeVowel().parse(userInputWord!!.toLowerCase(), Alphabets(TH_LANG().alphabet));
 
 
 

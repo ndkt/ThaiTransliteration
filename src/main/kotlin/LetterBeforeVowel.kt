@@ -15,7 +15,7 @@ class LetterBeforeVowel : Vowels{
         matchingSounds[mutableListOf("um","om")] = mutableListOf("ำ")
     }
 
-    override fun parse(word: String, alphabet: Alphabets, dictionary: Set<String>): Unit {
+    override fun parse(word: String, alphabet: Alphabets): Unit {
         var usedSystematicInference = false;
         println ("User Inputted: ${word.toLowerCase()}");
         val alphabetsHashmap = alphabet.alphabets
