@@ -16,6 +16,7 @@ class LetterBeforeVowel : Vowels{
     }
 
     override fun parse(word: String, alphabet: Alphabets): Unit {
+        var usedSystematicInference = false;
         println ("User Inputted: ${word.toLowerCase()}");
         val alphabetsHashmap = alphabet.alphabets
         val splitWord = (WordAreaSearch.wordSearch(word))[word.toLowerCase()]
@@ -91,11 +92,6 @@ class LetterBeforeVowel : Vowels{
 
 
 
-//                splitWordIndividuallySet.zip(cycle(TEST_FILE.thaiWords_TEST)).forEach { pair ->
-//                    println("WORDINDIVIDUALLYSET: ${pair.component1()} and TEST_FILE: ${pair.component2()}")
-//                }
-
-
                 // bอston match with บอสตัน, สนัอบต
                 // bะston match with บอสตัน, สนัอบต
                 // bัston match with บอสตัน, สนัอบต
@@ -122,15 +118,25 @@ class LetterBeforeVowel : Vowels{
                         }
                     }
 
-                println("Machine Thinks This Word is Closes: '${setOfClosestWord}' 96% similarity (PRESS ENTER TO USE IT)")
+                println("Machine Thinks This Word is Closes: '${setOfClosestWord}' 96% similarity (TYPE 'c' TO USE IT)")
                 println("Please Select The Closest Sounding Word: (Empty to Skip)")
                 var userRequestNumber = readLine()
 
-                if (userRequestNumber!!.isNotEmpty() && (individualSplittingIndex+1 < word.toLowerCase().length)) {
+                if (userRequestNumber.toString() == 'c'.toString()) {
+                    usedSystematicInference = true;
+                    if (setOfClosestWord.isNotEmpty()) {
+                        splitWordSegmentationSet.clear()
+                        splitWordIndividuallySet.clear()
+                        splitWordIndividuallySet.add(setOfClosestWord.elementAt(0))
+                    }
+                    break
+                } else if (userRequestNumber!!.isNotEmpty() && (individualSplittingIndex+1 < word.toLowerCase().length)) {
                     userRequestNumber = splitWordIndividuallySet.elementAt(userRequestNumber.toInt() - 1);
                     splitWordString = userRequestNumber;
                     splitWordIndividuallySet.clear()
                 }
+
+
             }
             else if ((individualSplittingIndex+1 == word.toLowerCase().length)) {
 //                println("Last Letter Reached")
@@ -197,6 +203,11 @@ class LetterBeforeVowel : Vowels{
                     }
                 }
             }
+        }
+
+
+        if (usedSystematicInference) {
+            println("Your Word Is: ${vowelReplacementResultSet.elementAt(0)}")
         }
 
 //        var resultcounter = 1;
